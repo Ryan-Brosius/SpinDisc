@@ -1,36 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Paper.Core.Spring;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Collider))]
 public class SpinningPlatform : MonoBehaviour
 {
     [Header("Pivot")]
-    [Tooltip("Optional explicit pivot. Leave null to use this transform's position.")]
     public Transform customPivot;
 
-    [Header("Spring Settings")]
-    public float springHalfLife = 0.075f;
-    public float springFrequency = 18f;
+    [Header("Spin Settings")]
+    public float torqueSensitivity = 10f;
+    [Range(0f, 1f)]
+    public float angularDrag = 0.95f;
 
     [Header("Materials")]
     private Material defaultMaterial;
     public Material hoverMaterial;
 
-    [Header("Gizmos")]
-    public Color gizmoPivotColor = Color.cyan;
-    public Color gizmoRadiusColor = new Color(0f, 1f, 1f, 0.25f);
-    public Color gizmoDragColor = Color.yellow;
-    public Color gizmoRiderColor = Color.green;
-
-    private Spring _rotationSpring;
-    private float _springAngle;
-    private float _targetAngle;
+    private Color gizmoPivotColor = Color.cyan;
+    private Color gizmoDragColor = Color.yellow;
+    private Color gizmoRiderColor = Color.green;
 
     private bool _isDragging;
-    private float _lastMouseAngle;
-    private float _debugMouseAngle;
+    private float _angularVelocity;
+    private Vector3 _lastMouseWorld;
 
     private bool _isHovered;
     private Renderer _renderer;
@@ -44,12 +37,6 @@ public class SpinningPlatform : MonoBehaviour
         _renderer = GetComponent<Renderer>();
         _collider = GetComponent<Collider>();
         _collider.isTrigger = true;
-
-        _rotationSpring = new Spring(springHalfLife, springFrequency);
-        _springAngle = transform.eulerAngles.y;
-        _targetAngle = _springAngle;
-        _rotationSpring.Initialize(new Vector3(_springAngle, 0f, 0f));
-
         defaultMaterial = _renderer.material;
     }
 
@@ -57,8 +44,9 @@ public class SpinningPlatform : MonoBehaviour
     {
         CheckHover();
         HandleDragInput();
-        TickSpring();
+        ApplyCoast();
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -71,6 +59,7 @@ public class SpinningPlatform : MonoBehaviour
         if (other.TryGetComponent<PlatformObject>(out var obj))
             _inside.Remove(obj);
     }
+
 
     private void CheckHover()
     {
@@ -93,7 +82,8 @@ public class SpinningPlatform : MonoBehaviour
         if (hit && Mouse.current.leftButton.wasPressedThisFrame)
         {
             _isDragging = true;
-            _lastMouseAngle = MouseAngleFromPivot();
+            _angularVelocity = 0f;
+            _lastMouseWorld = MouseWorldXZ();
             ClaimRiders();
         }
     }
@@ -105,23 +95,57 @@ public class SpinningPlatform : MonoBehaviour
         if (Mouse.current.leftButton.wasReleasedThisFrame)
         {
             _isDragging = false;
-            ReleaseRiders();
             if (!_isHovered)
                 ApplyMaterial(defaultMaterial);
             return;
         }
 
-        float current = MouseAngleFromPivot();
-        _debugMouseAngle = current;
+        Vector3 pivot = PivotPosition();
+        Vector3 mouseWorld = MouseWorldXZ();
+        Vector3 mouseDelta = mouseWorld - _lastMouseWorld;
+        _lastMouseWorld = mouseWorld;
 
-        float delta = Mathf.DeltaAngle(_lastMouseAngle, current);
-        _targetAngle -= delta;
-        _lastMouseAngle = current;
+        if (mouseDelta.sqrMagnitude < 0.000001f)
+        {
+            _angularVelocity = 0f;
+            return;
+        }
+
+        Vector3 toMouse = mouseWorld - pivot;
+        toMouse.y = 0f;
+        float radius = toMouse.magnitude;
+        if (radius < 0.001f)
+            return;
+
+        Vector3 radial = toMouse / radius;
+        Vector3 tangent = new Vector3(-radial.z, 0f, radial.x);
+
+        float tangential = Vector3.Dot(mouseDelta, tangent);
+
+        float angleDelta = -tangential * torqueSensitivity;
+        _angularVelocity = Time.deltaTime > 0f ? angleDelta / Time.deltaTime : 0f;
+
+        ApplyRotation(angleDelta);
     }
+
+
+    private void ApplyCoast()
+    {
+        if (_isDragging) return;
+
+        if (Mathf.Abs(_angularVelocity) < 0.0001f)
+        {
+            _angularVelocity = 0f;
+            return;
+        }
+
+        ApplyRotation(_angularVelocity * Time.deltaTime);
+        _angularVelocity *= Mathf.Pow(1f - angularDrag, Time.deltaTime);
+    }
+
 
     private void ClaimRiders()
     {
-        _riders.Clear();
         foreach (var obj in _inside)
         {
             if (obj == null) continue;
@@ -130,28 +154,12 @@ public class SpinningPlatform : MonoBehaviour
         }
     }
 
-    private void ReleaseRiders()
+    public void ForceClaimRider(PlatformObject obj)
     {
-        foreach (var rider in _riders)
-        {
-            if (rider != null)
-                rider.SetOwner(null);
-        }
-        _riders.Clear();
+        if (_riders.Remove(obj))
+            obj.SetOwner(null);
     }
 
-    private void TickSpring()
-    {
-        _rotationSpring.halfLife = springHalfLife;
-        _rotationSpring.frequency = springFrequency;
-
-        float prev = _springAngle;
-        _springAngle = _rotationSpring.Update(new Vector3(_targetAngle, 0f, 0f), Time.deltaTime).x;
-
-        float delta = _springAngle - prev;
-        if (Mathf.Abs(delta) > 0.0001f)
-            ApplyRotation(delta);
-    }
 
     private void ApplyRotation(float angleDelta)
     {
@@ -165,23 +173,19 @@ public class SpinningPlatform : MonoBehaviour
         }
     }
 
+
     private Vector3 PivotPosition() =>
         customPivot != null ? customPivot.position : transform.position;
 
-    private float MouseAngleFromPivot()
+    private Vector3 MouseWorldXZ()
     {
         var mouse = Mouse.current;
-        if (mouse == null) return 0f;
+        if (mouse == null) return Vector3.zero;
 
         Ray ray = Camera.main.ScreenPointToRay(mouse.position.ReadValue());
-
         float y = PivotPosition().y;
         float t = (y - ray.origin.y) / ray.direction.y;
-        Vector3 world = ray.origin + ray.direction * t;
-
-        Vector3 pivot = PivotPosition();
-        Vector2 dir = new Vector2(world.x - pivot.x, world.z - pivot.z);
-        return Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        return ray.origin + ray.direction * t;
     }
 
     private void ApplyMaterial(Material mat)
@@ -194,26 +198,28 @@ public class SpinningPlatform : MonoBehaviour
     private void OnDrawGizmos()
     {
         Vector3 pivot = PivotPosition();
+        float radius = _collider != null ? _collider.bounds.extents.magnitude : 0.5f;
 
         Gizmos.color = gizmoPivotColor;
         Gizmos.DrawSphere(pivot, 0.08f);
         Gizmos.DrawLine(pivot, transform.position);
 
-        float radius = _collider != null ? _collider.bounds.extents.magnitude : 0.5f;
-
         if (Application.isPlaying && _isDragging)
         {
+            Vector3 mouseWorld = MouseWorldXZ();
             Gizmos.color = gizmoDragColor;
-            Vector3 mouseDir = new Vector3(
-                Mathf.Cos(_debugMouseAngle * Mathf.Deg2Rad), 0f,
-                Mathf.Sin(_debugMouseAngle * Mathf.Deg2Rad));
-            Gizmos.DrawRay(pivot, mouseDir * radius);
+            Gizmos.DrawLine(pivot, mouseWorld);
 
-            Gizmos.color = Color.red;
-            Vector3 targetDir = new Vector3(
-                Mathf.Cos(_targetAngle * Mathf.Deg2Rad), 0f,
-                Mathf.Sin(_targetAngle * Mathf.Deg2Rad));
-            Gizmos.DrawRay(pivot, targetDir * (radius * 0.7f));
+            Vector3 toMouse = mouseWorld - pivot;
+            toMouse.y = 0f;
+            if (toMouse.sqrMagnitude > 0.001f)
+            {
+                Vector3 radial = toMouse.normalized;
+                Vector3 tangent = new Vector3(-radial.z, 0f, radial.x);
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawRay(mouseWorld, tangent * 0.5f);
+                Gizmos.DrawRay(mouseWorld, -tangent * 0.5f);
+            }
         }
 
         Gizmos.color = gizmoRiderColor;
@@ -225,7 +231,7 @@ public class SpinningPlatform : MonoBehaviour
 
         UnityEditor.Handles.color = Color.white;
         UnityEditor.Handles.Label(pivot + Vector3.up * (radius + 0.3f),
-            $"Spring: {(Application.isPlaying ? _springAngle : transform.eulerAngles.y):F1}°  Riders: {_riders.Count}  Inside: {_inside.Count}");
+            $"Vel: {_angularVelocity:F1}°/s  Riders: {_riders.Count}  Inside: {_inside.Count}");
     }
     #endregion
 }

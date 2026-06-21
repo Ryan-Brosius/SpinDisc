@@ -5,8 +5,13 @@ public class PlatformObject : MonoBehaviour
     private SpinningPlatform _owner;
     private readonly Color _gizmoOwnerLineColor = new Color(1f, 0.5f, 0f, 1f);
 
+    public SpinningPlatform Owner => _owner;
+
     public void SetOwner(SpinningPlatform newOwner)
     {
+        if (_owner != null && _owner != newOwner)
+            _owner.ForceClaimRider(this);
+
         _owner = newOwner;
     }
 
@@ -14,8 +19,6 @@ public class PlatformObject : MonoBehaviour
     {
         transform.RotateAround(pivot, Vector3.up, angleDelta);
     }
-
-    public SpinningPlatform Owner => _owner;
 
     #region Gizmos
     private void OnDrawGizmos()

@@ -14,8 +14,10 @@ public class BulletEntity : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    public void Initialize(float speed, Vector3 dir)
+    public void Initialize(float speed, float spread)
     {
-        rb.linearVelocity = dir * speed;
+        float angle = UnityEngine.Random.Range(0f - (spread/2), (spread/2));
+        transform.rotation = transform.rotation * Quaternion.Euler(0f, angle, 0f);
+        rb.linearVelocity = transform.forward * speed;
     }
 }

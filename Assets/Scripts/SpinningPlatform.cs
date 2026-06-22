@@ -149,6 +149,7 @@ public class SpinningPlatform : MonoBehaviour
         foreach (var obj in _inside)
         {
             if (obj == null) continue;
+            if (_riders.Contains(obj)) continue;
             obj.SetOwner(this);
             _riders.Add(obj);
         }

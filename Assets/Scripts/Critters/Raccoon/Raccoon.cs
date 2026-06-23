@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Racoon : Critter
+public class Raccoon : Critter
 {
     [SerializeField] private Transform target;
 

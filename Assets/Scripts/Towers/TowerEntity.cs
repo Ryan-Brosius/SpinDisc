@@ -23,22 +23,14 @@ public class TowerEntity : MonoBehaviour
     {
         if (TowerOnCooldown == false)
         {
-            Shoot();
+            Fire();
         }
-    }
-
-    public void Shoot()
-    {
-        // Aims/Gets target position, then fires projectile
-        // Aim();
-        Fire();
     }
 
     public void Fire()
     {
-        print("Fire");
         BulletEntity bullet = Instantiate(pfBullet, firePos.transform.position, Quaternion.LookRotation(firePos.transform.forward));
-        bullet.Initialize(10f, tower.Spread);
+        bullet.Initialize(tower.Speed, tower.Spread, tower.Range);
         TowerOnCooldown = true;
         StartCoroutine(RefreshCooldown());
     }

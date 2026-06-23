@@ -14,5 +14,5 @@ public class TowerSO : ScriptableObject
     [Range(0f,360f)]
     public float Spread;
 
-    public float Cost;
+    public float Speed;
 }

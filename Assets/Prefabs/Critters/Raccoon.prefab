@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2415805588410426317}
   - component: {fileID: 4747544801518435920}
   - component: {fileID: 9008127999296069078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Raccoon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,10 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca2d39add013534e9411c3d84cbf4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
   settings: {fileID: 11400000, guid: cce29e821c4b66245961ab687fc7a45a, type: 2}
   health: {fileID: 2415805588410426317}
   movement: {fileID: 4747544801518435920}
+  target: {fileID: 0}
 --- !u!1 &7289776635415555953
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 8818970223989264454}
   - component: {fileID: 3158691732275992073}
   - component: {fileID: 4751449744688746630}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

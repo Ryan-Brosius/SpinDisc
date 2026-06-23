@@ -6,6 +6,7 @@ public abstract class CritterMovement : MonoBehaviour
 {
     protected CritterSettingsSO settings;
     protected Rigidbody rb;
+    protected float speedMultiplier = 1f;
 
     protected bool isStunned = false;
 
@@ -23,7 +24,7 @@ public abstract class CritterMovement : MonoBehaviour
 
         Vector3 flatTarget = new Vector3(targetPosition.x, transform.position.y, targetPosition.z);
         Vector3 dir = Vector3.ProjectOnPlane(flatTarget - transform.position, Vector3.up).normalized;
-        rb.linearVelocity = dir * settings.MaxSpeed;
+        rb.linearVelocity = dir * settings.MaxSpeed * speedMultiplier;
 
         RotateTowards(targetPosition);
     }
@@ -50,5 +51,8 @@ public abstract class CritterMovement : MonoBehaviour
         StopMoving();
         yield return new WaitForSeconds(duration);
         isStunned = false;
+        OnStunEnd();
     }
+
+    protected virtual void OnStunEnd() { }
 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81c4246d4d2cdd44eb8d30ecb58b638a, type: 3}
-  m_Name: Hotdog
+  m_Name: BearMace
   m_EditorClassIdentifier: 
   Name: 
-  Damage: 1
-  Range: 10
+  Damage: 0
+  Range: 3
   FireRate: 1
   Spread: 0
-  Speed: 20
+  Speed: 10

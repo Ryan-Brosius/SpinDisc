@@ -4,22 +4,16 @@ using UnityEngine.Animations;
 
 public class TowerEntity : MonoBehaviour
 {
-    public TowerSO tower;
+    [SerializeField] protected TowerSO tower;
 
-    [SerializeField] private Transform firePos;
+    [SerializeField] protected Transform firePos;
 
-    [SerializeField] private BulletEntity pfBullet;
+    [SerializeField] protected BulletEntity pfBullet;
 
-    private bool TowerOnCooldown = false;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    protected bool TowerOnCooldown = false;
 
     // Update is called once per frame
-    private void Update()
+    protected virtual void Update()
     {
         if (TowerOnCooldown == false)
         {
@@ -27,7 +21,7 @@ public class TowerEntity : MonoBehaviour
         }
     }
 
-    public void Fire()
+    protected virtual void Fire()
     {
         BulletEntity bullet = Instantiate(pfBullet, firePos.transform.position, Quaternion.LookRotation(firePos.transform.forward));
         bullet.Initialize(tower.Speed, tower.Spread, tower.Range);
@@ -35,7 +29,7 @@ public class TowerEntity : MonoBehaviour
         StartCoroutine(RefreshCooldown());
     }
 
-    private IEnumerator RefreshCooldown()
+    protected IEnumerator RefreshCooldown()
     {
         yield return new WaitForSeconds(tower.FireRate);
 

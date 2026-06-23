@@ -8,16 +8,30 @@ public class BulletEntity : MonoBehaviour
 
     private Rigidbody rb;
 
+    private Vector3 startPos;
+    public float bulletRange;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    public void Initialize(float speed, float spread)
+    private void FixedUpdate()
     {
-        float angle = UnityEngine.Random.Range(0f - (spread/2), (spread/2));
+        if (Vector3.Distance(startPos, transform.position) > bulletRange)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Initialize(float speed, float spread, float range)
+    {
+        float angle = UnityEngine.Random.Range(0f - (spread / 2), (spread / 2));
         transform.rotation = transform.rotation * Quaternion.Euler(0f, angle, 0f);
         rb.linearVelocity = transform.forward * speed;
+
+        startPos = transform.position;
+        bulletRange = range;
     }
 }

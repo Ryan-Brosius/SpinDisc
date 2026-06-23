@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7048695108268864784}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: firePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 4529296142169563026}
   - component: {fileID: 1261212064517567611}
   - component: {fileID: 2371333947055545577}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 2507219261431264492}
   - component: {fileID: 1931728023729243457}
   - component: {fileID: 2800019587542605497}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pfSmores
   m_TagString: Untagged
   m_Icon: {fileID: 0}

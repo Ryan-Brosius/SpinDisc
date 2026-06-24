@@ -156,6 +156,11 @@ MonoBehaviour:
   tower: {fileID: 11400000, guid: c1fccad0281ca834c90ed2fb8d489f77, type: 2}
   firePos: {fileID: 4015762408923843399}
   pfBullet: {fileID: 5840028835176248509, guid: 3bdf7c9cb35e2fd4eaa8278e25a80480, type: 3}
+  range: 10
+  rangeAngle: 30
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &6424511486590643918
 GameObject:
   m_ObjectHideFlags: 0

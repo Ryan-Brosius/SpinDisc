@@ -4,16 +4,6 @@ public class Mace : TowerEntity
 {
     private int bulletCount = 15;
 
-    protected override void Update()
-    {
-        if (TowerOnCooldown == false)
-        {
-            Fire();
-        }
-    }
-
-
-
     protected override void Fire()
     {
         for (int i = 0; i < bulletCount; i++)

@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class PlatformObject : MonoBehaviour
 {
     private SpinningPlatform _owner;
@@ -7,17 +9,46 @@ public class PlatformObject : MonoBehaviour
 
     public SpinningPlatform Owner => _owner;
 
+    private void Awake()
+    {
+        var rb = GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+
+        var col = GetComponent<Collider>();
+        col.isTrigger = true;
+    }
+
     public void SetOwner(SpinningPlatform newOwner)
     {
         if (_owner != null && _owner != newOwner)
             _owner.ForceClaimRider(this);
-
         _owner = newOwner;
     }
 
     public void RotateWithPlatform(Vector3 pivot, float angleDelta)
     {
         transform.RotateAround(pivot, Vector3.up, angleDelta);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_owner == null) return;
+        if (!other.TryGetComponent<PlatformObject>(out var otherObj)) return;
+        if (otherObj.Owner == null || otherObj.Owner == _owner) return;
+
+        if (Mathf.Abs(Owner.AngularVelocity) < Mathf.Abs(otherObj.Owner.AngularVelocity)) return;
+
+        float sourceVelocity = _owner.AngularVelocity;
+
+        if (_owner.IsDragging)
+        {
+            otherObj.Owner.ReceiveAngularImpulse(-sourceVelocity);
+        }
+        else
+        {
+            otherObj.Owner.ReceiveAngularImpulse(-sourceVelocity * 0.8f);
+            _owner.ReceiveAngularImpulse(-sourceVelocity * 0.8f);
+        }
     }
 
     #region Gizmos

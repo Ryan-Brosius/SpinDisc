@@ -12,6 +12,11 @@ public class SpinningPlatform : MonoBehaviour
     public float torqueSensitivity = 10f;
     [Range(0f, 1f)]
     public float angularDrag = 0.95f;
+    public float maxAngularVelocity = 180f;
+
+    [Header("Rider Settings")]
+    public float circumferenceRadius = 2f;
+    public int maxRiders = 4;
 
     [Header("Materials")]
     private Material defaultMaterial;
@@ -21,7 +26,7 @@ public class SpinningPlatform : MonoBehaviour
     private Color gizmoDragColor = Color.yellow;
     private Color gizmoRiderColor = Color.green;
 
-    private bool _isDragging;
+    public bool _isDragging;
     private float _angularVelocity;
     private Vector3 _lastMouseWorld;
 
@@ -31,6 +36,14 @@ public class SpinningPlatform : MonoBehaviour
 
     private readonly HashSet<PlatformObject> _inside = new();
     private readonly List<PlatformObject> _riders = new();
+
+    public float AngularVelocity => _angularVelocity;
+    public bool IsDragging => _isDragging;
+
+    public void ReceiveAngularImpulse(float impulse)
+    {
+        _angularVelocity += impulse;
+    }
 
     private void Awake()
     {
@@ -122,10 +135,12 @@ public class SpinningPlatform : MonoBehaviour
 
         float tangential = Vector3.Dot(mouseDelta, tangent);
 
-        float angleDelta = -tangential * torqueSensitivity;
+        float angleDelta = -tangential * torqueSensitivity / radius;
         _angularVelocity = Time.deltaTime > 0f ? angleDelta / Time.deltaTime : 0f;
+        _angularVelocity = Mathf.Clamp(_angularVelocity, -maxAngularVelocity, maxAngularVelocity);
+        float clampedAngleDelta = _angularVelocity * Time.deltaTime;
 
-        ApplyRotation(angleDelta);
+        ApplyRotation(clampedAngleDelta);
     }
 
 
@@ -150,7 +165,10 @@ public class SpinningPlatform : MonoBehaviour
         {
             if (obj == null) continue;
             if (_riders.Contains(obj)) continue;
+            if (_riders.Count >= maxRiders) break;
+
             obj.SetOwner(this);
+            SnapToRing(obj);
             _riders.Add(obj);
         }
     }
@@ -159,6 +177,26 @@ public class SpinningPlatform : MonoBehaviour
     {
         if (_riders.Remove(obj))
             obj.SetOwner(null);
+    }
+
+    // Projects the object onto the circumference ring at pivot Y, facing outward.
+    private void SnapToRing(PlatformObject obj)
+    {
+        Vector3 pivot = PivotPosition();
+
+        Vector3 toObj = obj.transform.position - pivot;
+        toObj.y = 0f;
+
+        // Fall back to a consistent direction if the object is dead-center.
+        Vector3 outward = toObj.sqrMagnitude > 0.0001f
+            ? toObj.normalized
+            : transform.forward;
+
+        Vector3 snappedPos = pivot + outward * circumferenceRadius;
+        snappedPos.y = obj.transform.position.y;
+
+        obj.transform.position = snappedPos;
+        obj.transform.rotation = Quaternion.LookRotation(outward, Vector3.up);
     }
 
 
@@ -175,7 +213,7 @@ public class SpinningPlatform : MonoBehaviour
     }
 
 
-    private Vector3 PivotPosition() =>
+    public Vector3 PivotPosition() =>
         customPivot != null ? customPivot.position : transform.position;
 
     private Vector3 MouseWorldXZ()
@@ -199,11 +237,16 @@ public class SpinningPlatform : MonoBehaviour
     private void OnDrawGizmos()
     {
         Vector3 pivot = PivotPosition();
-        float radius = _collider != null ? _collider.bounds.extents.magnitude : 0.5f;
+        float boundsRadius = _collider != null ? _collider.bounds.extents.magnitude : 0.5f;
 
+        // Pivot sphere + line to transform center
         Gizmos.color = gizmoPivotColor;
         Gizmos.DrawSphere(pivot, 0.08f);
         Gizmos.DrawLine(pivot, transform.position);
+
+        // Circumference ring
+        Gizmos.color = new Color(1f, 0.5f, 0f); // orange
+        DrawGizmoCircle(pivot, circumferenceRadius, 48);
 
         if (Application.isPlaying && _isDragging)
         {
@@ -223,6 +266,7 @@ public class SpinningPlatform : MonoBehaviour
             }
         }
 
+        // Riders
         Gizmos.color = gizmoRiderColor;
         foreach (var rider in _riders)
         {
@@ -231,8 +275,21 @@ public class SpinningPlatform : MonoBehaviour
         }
 
         UnityEditor.Handles.color = Color.white;
-        UnityEditor.Handles.Label(pivot + Vector3.up * (radius + 0.3f),
-            $"Vel: {_angularVelocity:F1}°/s  Riders: {_riders.Count}  Inside: {_inside.Count}");
+        UnityEditor.Handles.Label(pivot + Vector3.up * (boundsRadius + 0.3f),
+            $"Vel: {_angularVelocity:F1}/s  Riders: {_riders.Count}/{maxRiders}  Inside: {_inside.Count}");
+    }
+
+    private void DrawGizmoCircle(Vector3 center, float radius, int segments)
+    {
+        float step = 360f / segments;
+        Vector3 prev = center + new Vector3(radius, 0f, 0f);
+        for (int i = 1; i <= segments; i++)
+        {
+            float angle = i * step * Mathf.Deg2Rad;
+            Vector3 next = center + new Vector3(Mathf.Cos(angle) * radius, 0f, Mathf.Sin(angle) * radius);
+            Gizmos.DrawLine(prev, next);
+            prev = next;
+        }
     }
     #endregion
 }

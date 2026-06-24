@@ -24,7 +24,7 @@ public class TowerEntity : MonoBehaviour
         _detected.Clear();
         DetectInCone(_detected);
 
-        if (TowerOnCooldown == false)
+        if (TowerOnCooldown == false && _detected.Count > 0)
         {
             Fire();
         }

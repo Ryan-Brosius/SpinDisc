@@ -1510,6 +1510,7 @@ MonoBehaviour:
   customPivot: {fileID: 0}
   torqueSensitivity: 10
   angularDrag: 0.95
+  maxAngularVelocity: 180
   circumferenceRadius: 4
   maxRiders: 4
   hoverMaterial: {fileID: 2100000, guid: e59ddbed6c09fdd409702559e98f4b79, type: 2}
@@ -1784,6 +1785,7 @@ MonoBehaviour:
   customPivot: {fileID: 0}
   torqueSensitivity: 10
   angularDrag: 0.95
+  maxAngularVelocity: 180
   circumferenceRadius: 2.5
   maxRiders: 1
   hoverMaterial: {fileID: 2100000, guid: e59ddbed6c09fdd409702559e98f4b79, type: 2}
@@ -4343,7 +4345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6180014880509218216, guid: 33e72d7a3595cf34c9313eacae3f7374, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.362
+      value: -5.97
       objectReference: {fileID: 0}
     - target: {fileID: 6180014880509218216, guid: 33e72d7a3595cf34c9313eacae3f7374, type: 3}
       propertyPath: m_LocalPosition.y

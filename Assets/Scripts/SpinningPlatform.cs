@@ -36,6 +36,7 @@ public class SpinningPlatform : MonoBehaviour
 
     private readonly HashSet<PlatformObject> _inside = new();
     private readonly List<PlatformObject> _riders = new();
+    public int RiderCount => _riders.Count;
 
     public float AngularVelocity => _angularVelocity;
     public bool IsDragging => _isDragging;
@@ -64,7 +65,11 @@ public class SpinningPlatform : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<PlatformObject>(out var obj))
+        {
             _inside.Add(obj);
+            if (obj.Owner == null)
+                ClaimRiders();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -159,7 +164,7 @@ public class SpinningPlatform : MonoBehaviour
     }
 
 
-    private void ClaimRiders()
+    public void ClaimRiders()
     {
         foreach (var obj in _inside)
         {

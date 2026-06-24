@@ -99,4 +99,9 @@ public class TowerEntity : MonoBehaviour
                 Gizmos.DrawLine(origin, col.transform.position);
         }
     }
+
+    public TowerSO GetTowerInfo()
+    {
+        return tower;
+    }
 }

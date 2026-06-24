@@ -22,6 +22,11 @@ public class Critter : MonoBehaviour
         movement.SetTarget(target);
     }
 
+    public TowerSO GetPreferredTarget()
+    {
+        return settings.Target;
+    }
+
     private void ApplyStun(Damage damage)
     {
         movement.StunRoutine(.5f);

@@ -7,6 +7,6 @@ public class Raccoon : Critter
 
     private void Start()
     {
-        SetTarget(target);
+        //SetTarget(target);
     }
 }

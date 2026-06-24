@@ -23,7 +23,7 @@ public class AntGroup : MonoBehaviour
     {
         antPrefabY = antPrefab.transform.position.y;
 
-        Spawn(currentTarget, spawnCount);
+        // Spawn(currentTarget, spawnCount);
     }
 
     public void Spawn(Transform target, int antCount)

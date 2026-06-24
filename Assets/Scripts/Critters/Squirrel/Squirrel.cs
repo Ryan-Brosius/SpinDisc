@@ -6,6 +6,6 @@ public class Squirrel : Critter
 
     private void Start()
     {
-        SetTarget(target);
+        //SetTarget(target);
     }
 }

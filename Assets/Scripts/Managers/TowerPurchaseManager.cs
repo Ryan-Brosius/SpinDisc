@@ -18,10 +18,10 @@ public class TowerPurchaseManager : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.tKey.wasPressedThisFrame)
-        {
-            SpawnTower(Smores);
-        }
+        //if (Keyboard.current.tKey.wasPressedThisFrame)
+        //{
+        //    SpawnTower(Smores);
+        //}
     }
 
     private void SpawnTower(TowerEntity tower)

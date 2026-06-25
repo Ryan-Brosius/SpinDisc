@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 1
   MaxSpeed: 2
+  Target: {fileID: 11400000, guid: 041597cf52cde344fb1440ce4403399a, type: 2}

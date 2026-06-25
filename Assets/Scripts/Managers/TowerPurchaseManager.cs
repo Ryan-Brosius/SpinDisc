@@ -30,7 +30,8 @@ public class TowerPurchaseManager : MonoBehaviour
             return;
 
         // Pushes it slightly forward
-        Instantiate(tower, spawnPlatform.transform.position + new Vector3(0f, 0f, 0.1f), Quaternion.identity);
+        GameObject newTower = Instantiate(tower, spawnPlatform.transform.position + new Vector3(0f, 0f, 0.1f), Quaternion.identity).gameObject;
+        GameManager.Instance.AddTowerToList(newTower);
     }
 
     #region Spawn Tower API Calls

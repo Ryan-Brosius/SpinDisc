@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb171c0053341f44596030ff8a188405, type: 3}
-  m_Name: Squirrel 1
+  m_Name: Bear
   m_EditorClassIdentifier: 
-  Health: 7
-  MaxSpeed: 6
+  Health: 30
+  MaxSpeed: 3
   Target: {fileID: 11400000, guid: a0b488c5c62343a4fbd677973bf5bf9c, type: 2}

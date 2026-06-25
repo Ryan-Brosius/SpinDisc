@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c4246d4d2cdd44eb8d30ecb58b638a, type: 3}
   m_Name: BearMace
   m_EditorClassIdentifier: 
-  Name: 
-  Damage: 0
-  Range: 3
-  FireRate: 1
-  Spread: 0
+  Name: BearMace
+  Damage: 3
+  Range: 15
+  FireRate: 10
+  Spread: 45
   Speed: 10

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: S'mores
   Damage: 3
-  Range: 20
+  Range: 30
   FireRate: 0.5
-  Spread: 0
+  Spread: 15
   Speed: 10

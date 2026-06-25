@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c4246d4d2cdd44eb8d30ecb58b638a, type: 3}
   m_Name: Hotdog
   m_EditorClassIdentifier: 
-  Name: 
-  Damage: 1
-  Range: 10
-  FireRate: 1
-  Spread: 0
-  Speed: 20
+  Name: Hotdog
+  Damage: 8
+  Range: 150
+  FireRate: 3
+  Spread: 2
+  Speed: 25

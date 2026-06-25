@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c4246d4d2cdd44eb8d30ecb58b638a, type: 3}
   m_Name: CornCob
   m_EditorClassIdentifier: 
-  Name: 
-  Damage: 0
-  Range: 10
+  Name: Corn
+  Damage: 1
+  Range: 30
   FireRate: 0.33
-  Spread: 51
+  Spread: 30
   Speed: 10

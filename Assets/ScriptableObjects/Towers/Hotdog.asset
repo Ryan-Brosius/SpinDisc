@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Hotdog
   Damage: 8
-  Range: 150
+  Range: 30
   FireRate: 3
   Spread: 2
   Speed: 25

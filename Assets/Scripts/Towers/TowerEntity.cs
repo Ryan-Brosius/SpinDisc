@@ -33,7 +33,7 @@ public class TowerEntity : MonoBehaviour
     protected virtual void Fire()
     {
         BulletEntity bullet = Instantiate(pfBullet, firePos.transform.position, Quaternion.LookRotation(firePos.transform.forward));
-        bullet.Initialize(tower.Speed, tower.Spread, tower.Range);
+        bullet.Initialize(tower.Speed, tower.Spread, tower.Range, tower.Damage);
         TowerOnCooldown = true;
         StartCoroutine(RefreshCooldown());
     }

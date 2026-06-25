@@ -10,6 +10,8 @@ public class BulletEntity : MonoBehaviour
 
     private Vector3 startPos;
     public float bulletRange;
+    private Damage damage;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -25,13 +27,24 @@ public class BulletEntity : MonoBehaviour
         }
     }
 
-    public void Initialize(float speed, float spread, float range)
+    public void Initialize(float speed, float spread, float range, float damage)
     {
+        this.damage = new Damage(damage, gameObject);
+
         float angle = UnityEngine.Random.Range(0f - (spread / 2), (spread / 2));
         transform.rotation = transform.rotation * Quaternion.Euler(0f, angle, 0f);
         rb.linearVelocity = transform.forward * speed;
 
         startPos = transform.position;
         bulletRange = range;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.TryGetComponent<CritterHealth>(out CritterHealth health))
+        {
+            health.TakeDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

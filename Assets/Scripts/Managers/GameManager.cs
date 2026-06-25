@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(timeBetweenSpawns);
-            spawner.SpawnCritter();
+            if (spawnEnabled) spawner.SpawnCritter();
         }
     }
 

@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] BoxCollider arenaBounds;
     [SerializeField] List<Critter> unlockedEnemies;
     [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] GameObject stupidAntGroupSpecialCaseAssB;
     private GameManager gameManager;
 
 
@@ -47,11 +48,21 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnCritter()
     {
         Critter selectedType = PickEnemyToSpawn();
-        GameObject enemyToSpawn = FindEnemyPrefab(selectedType.GetType());
-        Transform target;
+        GameObject enemyToSpawn = null;
+        if (selectedType is Ant) enemyToSpawn = stupidAntGroupSpecialCaseAssB;
+        else enemyToSpawn = FindEnemyPrefab(selectedType.GetType());
 
-        if (selectedType.GetPreferredTarget() != null) target = gameManager.FindActiveTower(selectedType.GetType()).transform;
-        else target = gameManager.FindAnyTower()?.transform;
+        Transform target = null;
+
+        if (selectedType.GetPreferredTarget() != null)
+        {
+            GameObject activeTower = gameManager.FindActiveTower(selectedType.GetPreferredTarget().GetType());
+            if (activeTower != null) target = activeTower.transform;
+        }
+        else
+        {
+            if (gameManager.FindAnyTower() != null) target = gameManager.FindAnyTower().transform;
+        }
 
         if (target == null)
             return;
@@ -59,8 +70,8 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = SetSpawnPoint(target);
 
         GameObject enemy = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+        lastEnemySpawned = enemy.GetComponent<Critter>();
         currentEnemies.Add(enemy);
-
         if (enemy.TryGetComponent<Critter>(out Critter enemyScript))
         {
             enemyScript.SetTarget(target);
@@ -73,7 +84,8 @@ public class EnemySpawner : MonoBehaviour
 
     public Critter PickEnemyToSpawn()
     {
-        if (currentEnemies.Count >= maxEnemies) return null;
+        // Need to enable later when max critter is implemented
+        // if (currentEnemies.Count >= maxEnemies) return null;
 
         List<Critter> enemyCandidates = new List<Critter>();
 
@@ -101,11 +113,14 @@ public class EnemySpawner : MonoBehaviour
 
     private bool CanISpawn(Critter enemyType)
     {
-        bool isSameAsPrevious = enemyType == lastEnemySpawned;
-        bool hasTarget = gameManager.DoesTowerExist(enemyType.GetPreferredTarget());
-        Debug.Log(enemyType.name + " has target is " + hasTarget);
+        bool isSameAsPrevious = false;
+        bool hasTarget = false;
+        if (lastEnemySpawned != null) isSameAsPrevious = enemyType.GetType() == lastEnemySpawned.GetType();
+        if (enemyType.GetPreferredTarget() != null) hasTarget = gameManager.DoesTowerExist(enemyType.GetPreferredTarget());
+        else return true;
 
-        if (hasTarget) return true;
+
+        if (!isSameAsPrevious && hasTarget) return true;
         else return false;
     }
     

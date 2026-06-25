@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 458d70dd2c591d847b7fbb6f52542869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antPrefab: {fileID: 608287630492101832, guid: 08df636c1d19cc04f83e666b4e32d82a, type: 3}
+  antPrefab: {fileID: 7170456461316064124, guid: 08df636c1d19cc04f83e666b4e32d82a, type: 3}
   antSettings: {fileID: 11400000, guid: e3e2e2e59e3561b418cd321a6883a9fa, type: 2}
   spawnInterval: 0.4
+  spawnCount: 5
   sineAmplitude: 0.5
   waveLength: 2
   pointsPerWave: 20

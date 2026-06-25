@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 4747544801518435920}
   - component: {fileID: 9008127999296069078}
   - component: {fileID: 3695561346660347370}
+  - component: {fileID: 5619278385479668986}
   m_Layer: 8
   m_Name: Raccoon
   m_TagString: Untagged
@@ -174,6 +175,18 @@ MonoBehaviour:
   movement: {fileID: 4747544801518435920}
   critter: {fileID: 9008127999296069078}
   ObjectHoldLocation: {fileID: 8279323641266142202}
+--- !u!114 &5619278385479668986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288922181270736634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47ff6790b1b1d749a8792c81ada603a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7289776635415555953
 GameObject:
   m_ObjectHideFlags: 0

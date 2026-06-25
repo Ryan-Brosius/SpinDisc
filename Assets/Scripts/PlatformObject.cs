@@ -9,7 +9,7 @@ public class PlatformObject : MonoBehaviour
 
     public SpinningPlatform Owner => _owner;
     // sex - or just a way to prevent it from riding anymore
-    public bool canRide = true;
+    public bool isNotStolen = true;
 
     private void Awake()
     {

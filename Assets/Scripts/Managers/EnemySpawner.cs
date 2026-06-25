@@ -46,12 +46,19 @@ public class EnemySpawner : MonoBehaviour
         if (selectedType.GetPreferredTarget() != null) target = gameManager.FindActiveTower(selectedType.GetType()).transform;
         else target = gameManager.FindAnyTower()?.transform;
 
+        if (target == null)
+            return;
+
         Vector3 spawnPosition = SetSpawnPoint(target);
 
         GameObject enemy = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
         if (enemy.TryGetComponent<Critter>(out Critter enemyScript))
         {
             enemyScript.SetTarget(target);
+        }
+        if (enemy.TryGetComponent<AntGroup>(out AntGroup antGroup))
+        {
+            antGroup.Spawn(target);
         }
     }
 

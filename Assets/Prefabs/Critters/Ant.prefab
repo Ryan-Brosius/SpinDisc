@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7170456461316064124}
   - component: {fileID: 4582623141105370093}
   - component: {fileID: 6330468854770198771}
+  - component: {fileID: 8112372695136046201}
   m_Layer: 8
   m_Name: Ant
   m_TagString: Untagged
@@ -143,6 +144,18 @@ MonoBehaviour:
   movement: {fileID: 4582623141105370093}
   critter: {fileID: 7170456461316064124}
   ObjectHoldLocation: {fileID: 1870196794818347264}
+--- !u!114 &8112372695136046201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608287630492101832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47ff6790b1b1d749a8792c81ada603a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3448281830175151269
 GameObject:
   m_ObjectHideFlags: 0

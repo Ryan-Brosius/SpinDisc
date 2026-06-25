@@ -18,17 +18,22 @@ public class CritterStealObjects : MonoBehaviour
 
         if (collision.gameObject.TryGetComponent<PlatformObject>(out PlatformObject obj))
         {
-            if (!obj.canRide)
+            if (!obj.isNotStolen)
                 return;
 
             IsHoldingObject = true;
             obj.Owner.RemoveRider(obj);
             obj.SetOwner(null);
-            obj.canRide = false;
+            obj.isNotStolen = false;
 
             health.TakeDamage(new Damage(-9999, gameObject));
             critter.enabled = false;
             movement.enabled = false;
+
+            if (collision.TryGetComponent<TowerEntity>(out TowerEntity tower))
+            {
+                tower.enabled = false;
+            }
 
             StartCoroutine(StealSequence(obj));
         }

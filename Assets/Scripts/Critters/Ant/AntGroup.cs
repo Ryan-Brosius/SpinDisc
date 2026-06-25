@@ -20,12 +20,7 @@ public class AntGroup : MonoBehaviour
 
     public Vector3? LeavePosition = null;
 
-    private void Awake()
-    {
-        Spawn(currentTarget, spawnCount);
-    }
-
-    public void Spawn(Transform target, int antCount)
+    public void Spawn(Transform target, int antCount = 5)
     {
         currentTarget = target;
         AppendWave(transform.position);

@@ -67,16 +67,19 @@ public class GameManager : MonoBehaviour
         return activeTowers.FirstOrDefault(prefab =>
         {
             var tower = prefab.GetComponent<TowerSO>();
-            return tower != null && towerType.IsInstanceOfType(tower);
+            var platformObj = prefab.GetComponent<PlatformObject>();
+            return tower != null && towerType.IsInstanceOfType(tower) && platformObj.isNotStolen;
         });
     }
 
     public GameObject FindAnyTower()
     {
-        if (activeTowers.Count == 0) return null;
+        var availableTowers = activeTowers
+            .Where(t => t.GetComponent<PlatformObject>()?.isNotStolen == true)
+            .ToList();
 
-        int randomIndex = UnityEngine.Random.Range(0, activeTowers.Count);
-        return activeTowers[randomIndex];
+        if (availableTowers.Count == 0) return null;
+        return availableTowers[UnityEngine.Random.Range(0, availableTowers.Count)];
     }
 
     public IEnumerator AutomatedSpawnEnemy()

@@ -3,7 +3,12 @@ guid: 9af787354dfe5d44bb3dc1da5eee7f5c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Smore
+    second: {fileID: 2100000, guid: 54bfe354b8dec0e448d8f12eda5e73a5, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

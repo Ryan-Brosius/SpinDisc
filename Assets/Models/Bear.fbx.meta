@@ -3,7 +3,12 @@ guid: 32b32342241de8042b6f54b49e2d7965
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bearr
+    second: {fileID: 2100000, guid: 6f93c60f3e6fabe418e0020696fa9390, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,12 @@ guid: 5f974ae1e16e6ca42b7400dbfa4e6af7
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Raccoon1
+    second: {fileID: 2100000, guid: df96bea0fa363eb468d2f427e267897a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

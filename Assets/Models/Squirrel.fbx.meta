@@ -3,7 +3,12 @@ guid: 54dbc77c71488f04d8f5ffb3534b1991
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Squirrel
+    second: {fileID: 2100000, guid: 2ac0bf5fb92541c4ebd1d13a46c259f9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -3,7 +3,12 @@ guid: 463827ac6aa53924b9c7037f4116179f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BearSpray1
+    second: {fileID: 2100000, guid: af48edb52fbadcc4992d09985d4ef049, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

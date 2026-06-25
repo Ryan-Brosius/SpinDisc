@@ -73,6 +73,7 @@ public class EnemySpawner : MonoBehaviour
             if (CanISpawn(enemy))
             {
                 enemyCandidates.Add(enemy);
+                Debug.Log("Added enemy " + enemy.name);
             }
         }
 
@@ -83,6 +84,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
+            Debug.Log("Spawning only raccoon");
             // Spawn a Raccoon if no possible targets
             return unlockedEnemies[0];
         }
@@ -92,8 +94,9 @@ public class EnemySpawner : MonoBehaviour
     {
         bool isSameAsPrevious = enemyType == lastEnemySpawned;
         bool hasTarget = gameManager.DoesTowerExist(enemyType.GetPreferredTarget());
+        Debug.Log(enemyType.name + " has target is " + hasTarget);
 
-        if (!isSameAsPrevious && hasTarget) return true;
+        if (hasTarget) return true;
         else return false;
     }
     
@@ -137,10 +140,10 @@ public class EnemySpawner : MonoBehaviour
         return spawnPos;
     }
 
-    public void ManualSpawnEnemy(GameObject EnemyPrefab, Transform Target)
+    public void ManualSpawnEnemy(GameObject EnemyPrefab, Transform Target, Transform position)
     {
-        Debug.Log("Spawning " + EnemyPrefab.name + " at" + Target);
-        Vector3 spawnPosition = SetSpawnPoint(Target);
+        // Debug.Log("Spawning " + EnemyPrefab.name + " at" + Target);
+        Vector3 spawnPosition = SetSpawnPoint(position);
 
         GameObject enemy = Instantiate(EnemyPrefab, spawnPosition, Quaternion.identity);
         if (enemy.TryGetComponent<Critter>(out Critter enemyScript))

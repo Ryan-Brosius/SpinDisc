@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using NUnit.Framework;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,10 +22,19 @@ public class GameManager : MonoBehaviour
     [Header ("References")]
     [SerializeField] List<GameObject> activeTowers;
 
+    [Header("Food Purchases")]
+    [SerializeField] List<TowerEntity> towersList;
+
     [Header("Critter Spawning")]
     private EnemySpawner spawner;
     [SerializeField] bool spawnEnabled = false;
     [SerializeField] float timeBetweenSpawns = 10.0f;
+
+    [Header("Tutorial Sequence")]
+    [SerializeField] Transform firstSpawnPoint;
+    [SerializeField] Transform secondSpawnPoint;
+    [SerializeField] float delayBetweenSpawns;
+    [SerializeField] GameObject tutorialRaccoon;
 
     private void Start()
     {
@@ -66,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         return activeTowers.FirstOrDefault(prefab =>
         {
-            var tower = prefab.GetComponent<TowerSO>();
+            var tower = prefab.GetComponent<TowerEntity>().GetTowerInfo();
             var platformObj = prefab.GetComponent<PlatformObject>();
             return tower != null && towerType.IsInstanceOfType(tower) && platformObj.isNotStolen;
         });
@@ -89,5 +99,12 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenSpawns);
             spawner.SpawnCritter();
         }
+    }
+
+    public IEnumerator TutorialSequence()
+    {
+        spawner.ManualSpawnEnemy(tutorialRaccoon, activeTowers[0].transform, firstSpawnPoint);
+        yield return new WaitForSeconds(delayBetweenSpawns);
+        spawner.ManualSpawnEnemy(tutorialRaccoon, activeTowers[0].transform, secondSpawnPoint);
     }
 }

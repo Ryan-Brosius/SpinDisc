@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c4246d4d2cdd44eb8d30ecb58b638a, type: 3}
   m_Name: Smores
   m_EditorClassIdentifier: 
-  Name: S'mores
+  Name: Smores
   Damage: 3
   Range: 10
   FireRate: 0.5

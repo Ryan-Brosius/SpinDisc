@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3298354797797386114}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.49, z: 0}
+  m_LocalPosition: {x: 0, y: 0.645, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 6600500485255599899}
   - component: {fileID: 7532314652943628195}
   - component: {fileID: 5738365266491199214}
+  - component: {fileID: 6902095723681248724}
   m_Layer: 8
   m_Name: Squirrel
   m_TagString: Untagged
@@ -121,6 +122,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5203352764789190803}
+  - {fileID: 921905547780821967}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &6205285867449514273
@@ -217,3 +219,50 @@ MonoBehaviour:
   health: {fileID: 7532314652943628195}
   movement: {fileID: 6600500485255599899}
   target: {fileID: 0}
+--- !u!114 &6902095723681248724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4718947566696463817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eace56b5615e7c740ba9318d12eb0d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 7532314652943628195}
+  movement: {fileID: 6600500485255599899}
+  critter: {fileID: 5738365266491199214}
+  ObjectHoldLocation: {fileID: 921905547780821967}
+--- !u!1 &4754449676460698719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921905547780821967}
+  m_Layer: 8
+  m_Name: HoldLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &921905547780821967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4754449676460698719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.718, z: 0.695}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 5561685284099657680}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

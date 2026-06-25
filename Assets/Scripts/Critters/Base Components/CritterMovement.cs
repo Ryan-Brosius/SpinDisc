@@ -18,7 +18,7 @@ public abstract class CritterMovement : MonoBehaviour
 
     public abstract void SetTarget(Transform target);
 
-    protected void MoveTowards(Vector3 targetPosition)
+    public void MoveTowards(Vector3 targetPosition)
     {
         if (isStunned) return;
 

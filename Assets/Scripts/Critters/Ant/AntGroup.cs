@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class AntGroup : MonoBehaviour
 {
-    [SerializeField] private GameObject antPrefab;
+    [SerializeField] private Ant antPrefab;
     [SerializeField] private CritterSettingsSO antSettings;
     [SerializeField] private float spawnInterval = 0.4f;
     [SerializeField] private int spawnCount = 5;
@@ -16,14 +16,13 @@ public class AntGroup : MonoBehaviour
 
     private List<Vector3> trail = new List<Vector3>();
     [SerializeField] private Transform currentTarget;
-    private float antPrefabY;
     private List<AntMovement> ants = new List<AntMovement>();
+
+    public Vector3? LeavePosition = null;
 
     private void Awake()
     {
-        antPrefabY = antPrefab.transform.position.y;
-
-        // Spawn(currentTarget, spawnCount);
+        Spawn(currentTarget, spawnCount);
     }
 
     public void Spawn(Transform target, int antCount)
@@ -44,12 +43,13 @@ public class AntGroup : MonoBehaviour
 
     private void SpawnAnt()
     {
-        Vector3 spawnPos = new Vector3(transform.position.x, antPrefabY, transform.position.z);
-        GameObject go = Instantiate(antPrefab, spawnPos, Quaternion.identity);
+        Vector3 spawnPos = new Vector3(transform.position.x, 0f, transform.position.z);
+        GameObject go = Instantiate(antPrefab.gameObject, spawnPos, Quaternion.identity);
+        antPrefab.AntGroup = this;
 
         AntMovement ant = go.GetComponent<AntMovement>();
         ant.Initialize(antSettings);
-        ant.SetupWithTrail(trail, antPrefabY);
+        ant.SetupWithTrail(trail, 0f);
         ants.Add(ant);
     }
 
@@ -74,9 +74,9 @@ public class AntGroup : MonoBehaviour
 
     private void AppendWave(Vector3 from)
     {
-        if (currentTarget == null) return;
+        if (currentTarget == null && !LeavePosition.HasValue) return;
 
-        Vector3 toTarget = (currentTarget.position - from);
+        Vector3 toTarget = (LeavePosition.HasValue ? LeavePosition.Value : currentTarget.position) - from;
         toTarget.y = 0f;
         Vector3 dir = toTarget.normalized;
         Vector3 perp = Vector3.Cross(dir, Vector3.up).normalized;
@@ -86,7 +86,7 @@ public class AntGroup : MonoBehaviour
             float t = i / (float)pointsPerWave;
             Vector3 point = from + dir * (t * waveLength);
             point += perp * (Mathf.Sin(t * Mathf.PI * 2f) * sineAmplitude);
-            point.y = antPrefabY;
+            point.y = 0f;
             trail.Add(point);
         }
     }

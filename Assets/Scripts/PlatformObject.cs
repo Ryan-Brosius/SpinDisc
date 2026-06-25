@@ -8,6 +8,8 @@ public class PlatformObject : MonoBehaviour
     private readonly Color _gizmoOwnerLineColor = new Color(1f, 0.5f, 0f, 1f);
 
     public SpinningPlatform Owner => _owner;
+    // sex - or just a way to prevent it from riding anymore
+    public bool canRide = true;
 
     private void Awake()
     {

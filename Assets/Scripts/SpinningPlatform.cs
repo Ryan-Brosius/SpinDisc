@@ -169,6 +169,7 @@ public class SpinningPlatform : MonoBehaviour
         foreach (var obj in _inside)
         {
             if (obj == null) continue;
+            if (!obj.canRide) continue;
             if (_riders.Contains(obj)) continue;
             if (_riders.Count >= maxRiders) break;
 
@@ -182,6 +183,11 @@ public class SpinningPlatform : MonoBehaviour
     {
         if (_riders.Remove(obj))
             obj.SetOwner(null);
+    }
+
+    public void RemoveRider(PlatformObject obj)
+    {
+        _riders.Remove(obj);
     }
 
     // Projects the object onto the circumference ring at pivot Y, facing outward.

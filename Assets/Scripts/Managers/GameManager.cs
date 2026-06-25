@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject FindAnyTower()
     {
+        if (activeTowers.Count == 0) return null;
+
         int randomIndex = UnityEngine.Random.Range(0, activeTowers.Count);
         return activeTowers[randomIndex];
     }

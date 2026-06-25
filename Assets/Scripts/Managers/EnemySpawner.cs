@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
         Transform target;
 
         if (selectedType.GetPreferredTarget() != null) target = gameManager.FindActiveTower(selectedType.GetType()).transform;
-        else target = gameManager.FindAnyTower().transform;
+        else target = gameManager.FindAnyTower()?.transform;
 
         Vector3 spawnPosition = SetSpawnPoint(target);
 

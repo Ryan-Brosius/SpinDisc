@@ -8,6 +8,9 @@ public class CritterSettingsSO : ScriptableObject
 
     [Header("Movement")]
     public float MaxSpeed = 5f;
+
+    [Header("Target Tower")]
+    public TowerSO Target;
     // TODO: Add acceleration data here
 
     // TODO: Add target data here (enums?)

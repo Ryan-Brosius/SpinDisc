@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Collections;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -25,9 +26,13 @@ public class EnemySpawner : MonoBehaviour
 
 
     [Header("Drama Director")]
-    [SerializeField] List<Critter> currentEnemies;
+    [SerializeField] List<GameObject> currentEnemies;
     [SerializeField] int maxEnemies;
     [SerializeField] Critter lastEnemySpawned;
+
+    // Enemy targetting stuff
+    List<PlatformObject> existingObjects;
+    private int roundRobinIndex = 0;
 
     // Private trackers
     private Transform chosenTarget;
@@ -35,6 +40,8 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.Instance;
+
+        StartCoroutine(EnemyUpdateRoutine());
     }
 
     public void SpawnCritter()
@@ -52,6 +59,8 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPosition = SetSpawnPoint(target);
 
         GameObject enemy = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+        currentEnemies.Add(enemy);
+
         if (enemy.TryGetComponent<Critter>(out Critter enemyScript))
         {
             enemyScript.SetTarget(target);
@@ -152,5 +161,61 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
 
+    }
+
+    private IEnumerator EnemyUpdateRoutine()
+    {
+        while (true)
+        {
+            if (currentEnemies.Count > 0)
+            {
+                if (roundRobinIndex == 0)
+                {
+                    Collider[] hits = Physics.OverlapSphere(Vector3.zero, 10);
+                    existingObjects = hits
+                        .Select(h => h.GetComponent<PlatformObject>())
+                        .Where(p => p != null && p.isNotStolen)
+                        .ToList();
+                }
+
+                roundRobinIndex %= currentEnemies.Count;
+                GameObject enemy = currentEnemies[roundRobinIndex];
+
+                if (enemy != null)
+                {
+                    UpdateEnemy(enemy);
+                    roundRobinIndex = (roundRobinIndex + 1) % currentEnemies.Count;
+                }
+                else
+                {
+                    currentEnemies.RemoveAt(roundRobinIndex);
+                    roundRobinIndex = currentEnemies.Count > 0 ? roundRobinIndex % currentEnemies.Count : 0;
+                }
+            }
+            yield return null;
+        }
+    }
+
+    private void UpdateEnemy(GameObject enemy)
+    {
+        PlatformObject closest = existingObjects
+            .Where(p => p != null && p.isNotStolen)
+            .OrderBy(p => Vector3.Distance(enemy.transform.position, p.transform.position))
+            .FirstOrDefault();
+
+        if (closest == null) return;
+
+        if (enemy.TryGetComponent<Critter>(out Critter critter))
+        {
+            if (enemy.TryGetComponent<CritterStealObjects>(out CritterStealObjects steal))
+            {
+                if (steal.IsHoldingObject) return;
+            }
+            critter.SetTarget(closest.transform);
+        }
+        else if (enemy.TryGetComponent<AntGroup>(out AntGroup antGroup))
+        {
+            // antGroup.SetTarget(closest.transform);
+        }
     }
 }

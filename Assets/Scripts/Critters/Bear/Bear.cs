@@ -10,7 +10,7 @@ public class Bear : Critter
 
         health.OnDamaged += OnDamaged;
 
-        movement.SetTarget(target);
+        //movement.SetTarget(target);
     }
 
     void OnDamaged(Damage damage)

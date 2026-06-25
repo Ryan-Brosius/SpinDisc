@@ -10,7 +10,7 @@ public class CritterStealObjects : MonoBehaviour
     [SerializeField] private Critter critter;
     [SerializeField] private Transform ObjectHoldLocation;
 
-    private bool IsHoldingObject = false;
+    public bool IsHoldingObject = false;
 
     private void OnTriggerEnter(Collider collision)
     {

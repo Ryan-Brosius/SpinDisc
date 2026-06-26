@@ -4,7 +4,7 @@ public class Chili : TowerEntity
 {
     private int bulletCount = 24;
 
-   protected override void Fire()
+   public override void Fire()
    {
         for (int i = 0; i < bulletCount; i++)
         {

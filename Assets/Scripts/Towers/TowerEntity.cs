@@ -9,6 +9,7 @@ public class TowerEntity : MonoBehaviour
     [SerializeField] protected TowerSO tower;
     [SerializeField] protected Transform firePos;
     [SerializeField] protected BulletEntity pfBullet;
+    [SerializeField] protected Animator animator;
 
     [Header("Range Settings")]
     private float range => tower.Range;
@@ -26,11 +27,11 @@ public class TowerEntity : MonoBehaviour
 
         if (TowerOnCooldown == false && _detected.Count > 0)
         {
-            Fire();
+            animator.SetTrigger("Fire");
         }
     }
 
-    protected virtual void Fire()
+    public virtual void Fire()
     {
         BulletEntity bullet = Instantiate(pfBullet, firePos.transform.position, Quaternion.LookRotation(firePos.transform.forward));
         bullet.Initialize(tower.Speed, tower.Spread, tower.Range, tower.Damage);

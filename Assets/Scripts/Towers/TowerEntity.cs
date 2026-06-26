@@ -44,6 +44,7 @@ public class TowerEntity : MonoBehaviour
         yield return new WaitForSeconds(tower.FireRate);
 
         TowerOnCooldown = false;
+        animator.ResetTrigger("Fire");
     }
 
     private void DetectInCone(List<Collider> results)

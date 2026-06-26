@@ -14,6 +14,9 @@ public class GrillMenu : MonoBehaviour,
     [SerializeField] RectTransform lidImage;
     [SerializeField] float offsetPercent = 0.9f;
 
+    [SerializeField] RectTransform openMarker;
+    [SerializeField] RectTransform closedMarker;
+
     GameManager gameManager;
     Vector2 closedPos;
     Vector2 openPos;
@@ -22,10 +25,8 @@ public class GrillMenu : MonoBehaviour,
 
     void Awake()
     {
-        openPos = grillPanel.anchoredPosition;
-        float heightOffset = this.GetComponent<RectTransform>().rect.height * offsetPercent;
-        closedPos = openPos - new Vector2(0, heightOffset);
-        // closedPos = openPos + Vector2.down * 50f;
+        openPos = openMarker.anchoredPosition;
+        closedPos = closedMarker.anchoredPosition;
 
         grillPanel.anchoredPosition = closedPos;
     }

@@ -880,7 +880,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0.47058868
           inSlope: -3.2276473
           outSlope: -3.2276473
           tangentMode: 0
@@ -888,8 +888,8 @@ ParticleSystem:
           inWeight: 0
           outWeight: 0.3584144
         - serializedVersion: 3
-          time: 0.20245445
-          value: 0.51439494
+          time: 0.19303977
+          value: 0.16145152
           inSlope: -1.018815
           outSlope: -1.018815
           tangentMode: 0
@@ -992,7 +992,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 10
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -1042,8 +1042,8 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
+      cycleCount: 2
+      repeatInterval: 0.2
       probability: 1
   SizeModule:
     enabled: 0
@@ -5780,7 +5780,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0.51960754
           inSlope: -3.2276473
           outSlope: -3.2276473
           tangentMode: 0
@@ -5789,21 +5789,21 @@ ParticleSystem:
           outWeight: 0.3584144
         - serializedVersion: 3
           time: 0.20245445
-          value: 0.51439494
-          inSlope: -1.018815
-          outSlope: -1.018815
+          value: 0.2006666
+          inSlope: -0.80165285
+          outSlope: -0.80165285
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.11451487
         - serializedVersion: 3
           time: 1
           value: 0.009803772
-          inSlope: -0.7007932
-          outSlope: -0.7007932
+          inSlope: -0.102077566
+          outSlope: -0.102077566
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.13282363
+          inWeight: 0.12042612
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -5892,7 +5892,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 10
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -5942,8 +5942,8 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
+      cycleCount: 2
+      repeatInterval: 0.2
       probability: 1
   SizeModule:
     enabled: 0
@@ -15589,7 +15589,7 @@ ParticleSystem:
         m_Curve:
         - serializedVersion: 3
           time: 0
-          value: 1
+          value: 0.49019623
           inSlope: -3.2276473
           outSlope: -3.2276473
           tangentMode: 0
@@ -15598,21 +15598,21 @@ ParticleSystem:
           outWeight: 0.3584144
         - serializedVersion: 3
           time: 0.20245445
-          value: 0.51439494
-          inSlope: -1.018815
-          outSlope: -1.018815
+          value: 0.16145152
+          inSlope: -0.59932727
+          outSlope: -0.59932727
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.112153575
         - serializedVersion: 3
           time: 1
-          value: 0.009803772
-          inSlope: -0.7007932
-          outSlope: -0.7007932
+          value: 0.019607544
+          inSlope: -0.1795158
+          outSlope: -0.1795158
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.13282363
+          inWeight: 0.13695513
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -15701,7 +15701,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 10
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -15751,8 +15751,8 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 1
-      repeatInterval: 0.01
+      cycleCount: 2
+      repeatInterval: 0.2
       probability: 1
   SizeModule:
     enabled: 0

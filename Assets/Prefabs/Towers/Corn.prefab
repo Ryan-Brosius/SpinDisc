@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 11400000, guid: a0b488c5c62343a4fbd677973bf5bf9c, type: 2}
   firePos: {fileID: 1917457695011591134}
-  pfBullet: {fileID: 5840028835176248509, guid: 3bdf7c9cb35e2fd4eaa8278e25a80480, type: 3}
+  pfBullet: {fileID: 5840028835176248509, guid: f8230d666e4ea6c48be59a4f3be29d66, type: 3}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256

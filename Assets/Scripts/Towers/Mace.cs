@@ -4,7 +4,7 @@ public class Mace : TowerEntity
 {
     private int bulletCount = 15;
 
-    protected override void Fire()
+    public override void Fire()
     {
         for (int i = 0; i < bulletCount; i++)
         {

@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.086, y: 1.464, z: 0.492}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7429820724501307685}
@@ -51,6 +51,7 @@ MonoBehaviour:
   tower: {fileID: 11400000, guid: c1fccad0281ca834c90ed2fb8d489f77, type: 2}
   firePos: {fileID: 7367238535793909684}
   pfBullet: {fileID: 5840028835176248509, guid: 3bdf7c9cb35e2fd4eaa8278e25a80480, type: 3}
+  animator: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256

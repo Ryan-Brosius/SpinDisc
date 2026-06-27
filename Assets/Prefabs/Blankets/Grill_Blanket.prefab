@@ -45,7 +45,7 @@ Light:
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 200
-  m_Range: 20
+  m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -151,7 +151,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.83, z: 0}
-  m_LocalScale: {x: 2.5, y: 1, z: 2.5}
+  m_LocalScale: {x: 3.5, y: 1, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3762965851357472148}
@@ -250,7 +250,7 @@ MonoBehaviour:
   torqueSensitivity: 10
   angularDrag: 0.9
   maxAngularVelocity: 180
-  circumferenceRadius: 4
+  circumferenceRadius: 5
   maxRiders: 4
   hoverMaterial: {fileID: 2100000, guid: 8a48d5868c2344346840a13a04c3124f, type: 2}
   _isDragging: 0

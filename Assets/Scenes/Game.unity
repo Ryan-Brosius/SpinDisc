@@ -2340,10 +2340,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5992869936400538878, guid: 4163307939ea4b7448442786cb5101cb, type: 3}
-      propertyPath: maxRiders
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8744536995399298414, guid: 4163307939ea4b7448442786cb5101cb, type: 3}
       propertyPath: m_Name
       value: Grill_Blanket
@@ -7669,9 +7665,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customPivot: {fileID: 0}
-  torqueSensitivity: 10
-  angularDrag: 0.9
-  maxAngularVelocity: 180
+  torqueSensitivity: 30
+  angularDrag: 0.98
+  maxAngularVelocity: 300
   circumferenceRadius: 3
   maxRiders: 1
   hoverMaterial: {fileID: 2100000, guid: 6b7e3c50f2c6bbf48b41de1ab0f037be, type: 2}
@@ -7689,9 +7685,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customPivot: {fileID: 0}
-  torqueSensitivity: 10
-  angularDrag: 0.9
-  maxAngularVelocity: 180
+  torqueSensitivity: 30
+  angularDrag: 0.98
+  maxAngularVelocity: 300
   circumferenceRadius: 3
   maxRiders: 1
   hoverMaterial: {fileID: 2100000, guid: 6b7e3c50f2c6bbf48b41de1ab0f037be, type: 2}

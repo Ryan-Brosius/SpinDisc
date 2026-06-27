@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb171c0053341f44596030ff8a188405, type: 3}
   m_Name: Ant
   m_EditorClassIdentifier: 
-  Health: 1
-  MaxSpeed: 2
+  Health: 0.3
+  MaxSpeed: 4
   Target: {fileID: 11400000, guid: 041597cf52cde344fb1440ce4403399a, type: 2}

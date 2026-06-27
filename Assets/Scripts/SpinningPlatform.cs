@@ -247,6 +247,7 @@ public class SpinningPlatform : MonoBehaviour
     #region Gizmos
     private void OnDrawGizmos()
     {
+        #if UNITY_EDITOR
         Vector3 pivot = PivotPosition();
         float boundsRadius = _collider != null ? _collider.bounds.extents.magnitude : 0.5f;
 
@@ -288,6 +289,7 @@ public class SpinningPlatform : MonoBehaviour
         UnityEditor.Handles.color = Color.white;
         UnityEditor.Handles.Label(pivot + Vector3.up * (boundsRadius + 0.3f),
             $"Vel: {_angularVelocity:F1}/s  Riders: {_riders.Count}/{maxRiders}  Inside: {_inside.Count}");
+        #endif
     }
 
     private void DrawGizmoCircle(Vector3 center, float radius, int segments)

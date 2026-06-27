@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CornCob
   m_EditorClassIdentifier: 
   Name: Corn
-  Damage: 1
+  Damage: 0.5
   Range: 10
-  FireRate: 0.33
+  FireRate: 0.3
   Spread: 30
   Speed: 10

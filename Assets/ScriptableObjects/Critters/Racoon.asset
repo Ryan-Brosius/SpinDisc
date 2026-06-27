@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Racoon
   m_EditorClassIdentifier: 
   Health: 5
-  MaxSpeed: 5
+  MaxSpeed: 3
+  Target: {fileID: 0}

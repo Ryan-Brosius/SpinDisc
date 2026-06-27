@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 4757738371023009258}
   - component: {fileID: 763175140704791486}
   - component: {fileID: 5648496155740269648}
-  - component: {fileID: 3320413521436342054}
   m_Layer: 0
   m_Name: Eye1
   m_TagString: Untagged
@@ -174,28 +173,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3320413521436342054
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4485284311407289606}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4718947566696463817
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +379,6 @@ GameObject:
   - component: {fileID: 1965537609298391431}
   - component: {fileID: 1649707639998400426}
   - component: {fileID: 414412688528882067}
-  - component: {fileID: 3709549532349366647}
   m_Layer: 0
   m_Name: Eye1 (1)
   m_TagString: Untagged
@@ -479,28 +455,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3709549532349366647
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5723364230194101401}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &5860034087486506723
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,15 +575,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 54dbc77c71488f04d8f5ffb3534b1991, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54dbc77c71488f04d8f5ffb3534b1991, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54dbc77c71488f04d8f5ffb3534b1991, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 54dbc77c71488f04d8f5ffb3534b1991, type: 3}
       propertyPath: m_LocalPosition.x

@@ -56,6 +56,7 @@ public class PlatformObject : MonoBehaviour
     #region Gizmos
     private void OnDrawGizmos()
     {
+        #if UNITY_EDITOR
         if (_owner != null)
         {
             Gizmos.color = _gizmoOwnerLineColor;
@@ -74,6 +75,7 @@ public class PlatformObject : MonoBehaviour
             UnityEditor.Handles.Label(
                 transform.position + Vector3.up * 0.25f, "No platform");
         }
+        #endif
     }
     #endregion
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Squirrel
   m_EditorClassIdentifier: 
   Health: 7
-  MaxSpeed: 6
+  MaxSpeed: 7
   Target: {fileID: 11400000, guid: a0b488c5c62343a4fbd677973bf5bf9c, type: 2}

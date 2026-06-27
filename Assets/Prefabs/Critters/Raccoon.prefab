@@ -318,7 +318,6 @@ GameObject:
   - component: {fileID: 3453150967086539782}
   - component: {fileID: 7301203077045083318}
   - component: {fileID: 3392695008425396882}
-  - component: {fileID: 8461464430092020838}
   m_Layer: 0
   m_Name: Eye1 (1)
   m_TagString: Untagged
@@ -395,28 +394,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8461464430092020838
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8014392916872667598}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9009780507455400849
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,7 +405,6 @@ GameObject:
   - component: {fileID: 3274422524526319150}
   - component: {fileID: 5624335033675632153}
   - component: {fileID: 2413644743624233916}
-  - component: {fileID: 1634763879226812508}
   m_Layer: 0
   m_Name: Eye1
   m_TagString: Untagged
@@ -505,28 +481,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1634763879226812508
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9009780507455400849}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &3272925549186752104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -693,15 +647,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 5f974ae1e16e6ca42b7400dbfa4e6af7, type: 3}
       propertyPath: m_LocalScale.x
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f974ae1e16e6ca42b7400dbfa4e6af7, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f974ae1e16e6ca42b7400dbfa4e6af7, type: 3}
       propertyPath: m_LocalScale.z
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5f974ae1e16e6ca42b7400dbfa4e6af7, type: 3}
       propertyPath: m_LocalPosition.x

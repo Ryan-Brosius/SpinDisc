@@ -46,9 +46,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   antPrefab: {fileID: 7170456461316064124, guid: 08df636c1d19cc04f83e666b4e32d82a, type: 3}
   antSettings: {fileID: 11400000, guid: e3e2e2e59e3561b418cd321a6883a9fa, type: 2}
-  spawnInterval: 0.4
-  spawnCount: 5
-  sineAmplitude: 0.5
+  spawnInterval: 0.6
+  spawnCount: 12
+  sineAmplitude: 0.75
   waveLength: 2
   pointsPerWave: 20
   currentTarget: {fileID: 0}

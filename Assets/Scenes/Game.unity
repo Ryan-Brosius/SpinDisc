@@ -6304,6 +6304,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 28821662}
     m_Modifications:
+    - target: {fileID: 168356013342502399, guid: af52700154baff34985ac43051eb31f4, type: 3}
+      propertyPath: enemyPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 168356013342502399, guid: af52700154baff34985ac43051eb31f4, type: 3}
+      propertyPath: unlockedEnemies.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 932420163678341315, guid: af52700154baff34985ac43051eb31f4, type: 3}
       propertyPath: m_Name
       value: Enemy Spawner
@@ -6404,7 +6412,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30

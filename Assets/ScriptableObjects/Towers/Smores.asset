@@ -15,6 +15,6 @@ MonoBehaviour:
   Name: Smores
   Damage: 3
   Range: 15
-  FireRate: 0.5
+  FireRate: 1
   Spread: 15
-  Speed: 10
+  Speed: 12

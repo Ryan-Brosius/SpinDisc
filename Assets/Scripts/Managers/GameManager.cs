@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
 
     [Header ("References")]
     [SerializeField] List<GameObject> activeTowers;
+    [SerializeField] GameObject cornButton;
+    [SerializeField] GameObject hotdogButton;
+    [SerializeField] GameObject maceButton;
 
     [Header("Food Purchases")]
     [SerializeField] List<TowerEntity> towersList;
@@ -107,5 +110,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(delayBetweenSpawns);
         spawner.ManualSpawnEnemy(tutorialRaccoon, activeTowers[0].transform, secondSpawnPoint);
         yield return new WaitForSeconds(delayBetweenSpawns);
+    }
+
+    public void ActivateButton(GameObject button)
+    {
+        if (button != null && !button.gameObject.activeSelf) button.gameObject.SetActive(true);
     }
 }

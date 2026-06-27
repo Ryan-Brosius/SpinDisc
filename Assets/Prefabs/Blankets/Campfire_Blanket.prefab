@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -6, y: 0, z: 6}
-  m_LocalScale: {x: 1.5, y: 1, z: 1.5}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4906255263842246797}
@@ -130,8 +130,8 @@ MonoBehaviour:
   torqueSensitivity: 10
   angularDrag: 0.9
   maxAngularVelocity: 180
-  circumferenceRadius: 2
-  maxRiders: 4
+  circumferenceRadius: 3
+  maxRiders: 1
   hoverMaterial: {fileID: 2100000, guid: 6b7e3c50f2c6bbf48b41de1ab0f037be, type: 2}
   _isDragging: 0
 --- !u!1 &7429769633283832280

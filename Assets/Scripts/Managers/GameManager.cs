@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     [Header("Tutorial Sequence")]
     [SerializeField] Transform firstSpawnPoint;
     [SerializeField] Transform secondSpawnPoint;
-    [SerializeField] float delayBetweenSpawns;
+    [SerializeField] float delayBetweenSpawns = 10.0f;
     [SerializeField] GameObject tutorialRaccoon;
 
     private void Start()
@@ -106,5 +106,6 @@ public class GameManager : MonoBehaviour
         spawner.ManualSpawnEnemy(tutorialRaccoon, activeTowers[0].transform, firstSpawnPoint);
         yield return new WaitForSeconds(delayBetweenSpawns);
         spawner.ManualSpawnEnemy(tutorialRaccoon, activeTowers[0].transform, secondSpawnPoint);
+        yield return new WaitForSeconds(delayBetweenSpawns);
     }
 }

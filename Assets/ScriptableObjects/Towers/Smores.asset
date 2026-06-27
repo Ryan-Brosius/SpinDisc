@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Smores
   Damage: 3
-  Range: 10
+  Range: 15
   FireRate: 0.5
   Spread: 15
   Speed: 10

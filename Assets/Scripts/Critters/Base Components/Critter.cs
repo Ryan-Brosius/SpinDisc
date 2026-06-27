@@ -34,6 +34,7 @@ public class Critter : MonoBehaviour
 
     protected virtual void HandleDeath()
     {
+        GameManager.Instance.AddCritterScore(this);
         Destroy(gameObject);
     }
 }

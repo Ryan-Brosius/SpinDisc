@@ -25,10 +25,13 @@ public class CritterStealObjects : MonoBehaviour
             obj.Owner.RemoveRider(obj);
             obj.SetOwner(null);
             obj.isNotStolen = false;
+            GameManager.Instance.RemoveTowerFromList(obj.gameObject);
 
             health.TakeDamage(new Damage(-9999, gameObject));
             critter.enabled = false;
             movement.enabled = false;
+
+            this.gameObject.layer = LayerMask.NameToLayer("Default");
 
             if (collision.TryGetComponent<TowerEntity>(out TowerEntity tower))
             {
@@ -57,6 +60,9 @@ public class CritterStealObjects : MonoBehaviour
         }
         else
             movement.MoveTowards(reverseDirection * 100f);
+
+        yield return new WaitForSeconds(10.0f);
+        Destroy(gameObject);
 
         yield break;
     }

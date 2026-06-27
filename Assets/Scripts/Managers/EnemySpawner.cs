@@ -45,6 +45,42 @@ public class EnemySpawner : MonoBehaviour
         StartCoroutine(EnemyUpdateRoutine());
     }
 
+    public void UnlockEnemies()
+    {
+        int score = gameManager.GetCurrentSore();
+        if (score >= 15 && !IsEnemyUnlocked(enemyPrefabs[1]))
+        {
+            if (enemyPrefabs[1].TryGetComponent<Critter>(out Critter critterType))
+            {
+                unlockedEnemies.Add(critterType);
+            }
+        }
+        if (score >= 50 && !IsEnemyUnlocked(enemyPrefabs[2]))
+        {
+            if (enemyPrefabs[2].TryGetComponent<Critter>(out Critter critterType))
+            {
+                unlockedEnemies.Add(critterType);
+            }
+        }
+        if (score >= 100 && !IsEnemyUnlocked(enemyPrefabs[3]))
+        {
+            if (enemyPrefabs[3].TryGetComponent<Critter>(out Critter critterType))
+            {
+                unlockedEnemies.Add(critterType);
+            }
+        }
+    }
+
+    public bool IsEnemyUnlocked(GameObject critterObj)
+    {
+        Critter critterType = critterObj.GetComponent<Critter>();
+        if (critterType != null)
+        {
+            if (unlockedEnemies.Contains(critterType)) return true;
+        }
+        return false;
+    }
+
     public void SpawnCritter()
     {
         Critter selectedType = PickEnemyToSpawn();
@@ -115,7 +151,7 @@ public class EnemySpawner : MonoBehaviour
     {
         bool isSameAsPrevious = false;
         bool hasTarget = false;
-        if (lastEnemySpawned != null) isSameAsPrevious = enemyType.GetType() == lastEnemySpawned.GetType();
+        if (lastEnemySpawned != null && enemyType.GetType() == lastEnemySpawned.GetType()) isSameAsPrevious = true;
         if (enemyType.GetPreferredTarget() != null) hasTarget = gameManager.DoesTowerExist(enemyType.GetPreferredTarget());
         else return true;
 

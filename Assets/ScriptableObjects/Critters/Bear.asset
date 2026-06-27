@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb171c0053341f44596030ff8a188405, type: 3}
   m_Name: Bear
   m_EditorClassIdentifier: 
-  Health: 30
-  MaxSpeed: 3
+  Health: 20
+  MaxSpeed: 2
   Target: {fileID: 11400000, guid: 6b277502bdf96b84b935b0c36ac81386, type: 2}

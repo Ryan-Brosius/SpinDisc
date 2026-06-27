@@ -6,6 +6,7 @@ public class BearFoodDestroy : MonoBehaviour
     {
         if (other.TryGetComponent<PlatformObject>(out PlatformObject obj))
         {
+            GameManager.Instance.RemoveTowerFromList(obj.gameObject);
             Destroy(obj.gameObject);
             // Maybe try to update next target at this point?
         }

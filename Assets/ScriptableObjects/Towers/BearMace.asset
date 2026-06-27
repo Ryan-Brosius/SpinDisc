@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BearMace
   m_EditorClassIdentifier: 
   Name: BearMace
-  Damage: 1
+  Damage: 0.1
   Range: 5
-  FireRate: 10
+  FireRate: 5
   Spread: 45
   Speed: 10

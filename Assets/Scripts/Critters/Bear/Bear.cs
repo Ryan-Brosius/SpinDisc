@@ -9,6 +9,7 @@ public class Bear : Critter
         base.Awake();
 
         health.OnDamaged += OnDamaged;
+        GameManager.Instance.UnlockBearMace();
 
         //movement.SetTarget(target);
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8442420530867772321}
   - component: {fileID: 5314748133472157943}
   - component: {fileID: 9210429625243505465}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7129252522748200568}
   - component: {fileID: 6928087067079039693}
   - component: {fileID: 9052582108009490364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Eye1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,13 +183,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6770845574282573579}
+  - component: {fileID: 6473979962751496665}
   - component: {fileID: 1754912743592454458}
   - component: {fileID: 5746314035135758328}
   - component: {fileID: 4436747291227794198}
   - component: {fileID: 4383917917979234819}
   - component: {fileID: 4562820774489452086}
   - component: {fileID: 5123952541003915802}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +213,27 @@ Transform:
   - {fileID: 6916019907093457018}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6473979962751496665
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4877377905944059114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 8, z: 3}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &1754912743592454458
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -237,7 +259,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!114 &5746314035135758328
 MonoBehaviour:
@@ -264,7 +286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fleeSpeedMultiplier: 0.75
-  fleeDuration: 4
+  fleeDuration: 6
 --- !u!114 &4383917917979234819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +395,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: eye_cone
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 797af8c916c5583499d6d4090beaa537, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -451,6 +477,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: eye_cone
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 797af8c916c5583499d6d4090beaa537, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -524,6 +554,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 32b32342241de8042b6f54b49e2d7965, type: 3}
       propertyPath: m_Name
       value: Bear
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 32b32342241de8042b6f54b49e2d7965, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

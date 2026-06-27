@@ -10,7 +10,7 @@ public class BulletEntity : MonoBehaviour
 
     private Vector3 startPos;
     public float bulletRange;
-    private Damage damage;
+    [SerializeField] private Damage damage;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -27,9 +27,9 @@ public class BulletEntity : MonoBehaviour
         }
     }
 
-    public void Initialize(float speed, float spread, float range, float damage)
+    public void Initialize(float speed, float spread, float range, float damage, GameObject source)
     {
-        this.damage = new Damage(damage, gameObject);
+        this.damage = new Damage(damage, source);
 
         float angle = UnityEngine.Random.Range(0f - (spread / 2), (spread / 2));
         transform.rotation = transform.rotation * Quaternion.Euler(0f, angle, 0f);

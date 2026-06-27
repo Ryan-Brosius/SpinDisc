@@ -50,10 +50,12 @@ MonoBehaviour:
   - {fileID: 9008127999296069078, guid: 9e877172aac80d8469afee58c7d2376c, type: 3}
   - {fileID: 7170456461316064124, guid: 08df636c1d19cc04f83e666b4e32d82a, type: 3}
   - {fileID: 5738365266491199214, guid: ce6c8fd7374bf804ba08adc4f42ab056, type: 3}
+  - {fileID: 4383917917979234819, guid: d848566e4e4f1fb4894028c697ec5650, type: 3}
   enemyPrefabs:
   - {fileID: 5288922181270736634, guid: 9e877172aac80d8469afee58c7d2376c, type: 3}
   - {fileID: 608287630492101832, guid: 08df636c1d19cc04f83e666b4e32d82a, type: 3}
   - {fileID: 4718947566696463817, guid: ce6c8fd7374bf804ba08adc4f42ab056, type: 3}
+  - {fileID: 4877377905944059114, guid: d848566e4e4f1fb4894028c697ec5650, type: 3}
   stupidAntGroupSpecialCaseAssB: {fileID: 3995662916975303318, guid: d12b3df0d6c7ff54e896fbd88e19fa1e, type: 3}
   currentEnemies: []
   maxEnemies: 2

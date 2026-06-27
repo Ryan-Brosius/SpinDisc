@@ -252,7 +252,7 @@ MonoBehaviour:
   maxAngularVelocity: 180
   circumferenceRadius: 4
   maxRiders: 4
-  hoverMaterial: {fileID: 2100000, guid: e59ddbed6c09fdd409702559e98f4b79, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: 8a48d5868c2344346840a13a04c3124f, type: 2}
   _isDragging: 0
 --- !u!1001 &126841226249802425
 PrefabInstance:

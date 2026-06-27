@@ -132,7 +132,7 @@ MonoBehaviour:
   maxAngularVelocity: 180
   circumferenceRadius: 2
   maxRiders: 4
-  hoverMaterial: {fileID: 2100000, guid: e59ddbed6c09fdd409702559e98f4b79, type: 2}
+  hoverMaterial: {fileID: 2100000, guid: 6b7e3c50f2c6bbf48b41de1ab0f037be, type: 2}
   _isDragging: 0
 --- !u!1 &7429769633283832280
 GameObject:

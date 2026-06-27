@@ -34,7 +34,7 @@ public class SpinningPlatform : MonoBehaviour
     private Renderer _renderer;
     private Collider _collider;
 
-    private readonly HashSet<PlatformObject> _inside = new();
+    public readonly HashSet<PlatformObject> _inside = new();
     private readonly List<PlatformObject> _riders = new();
     public int RiderCount => _riders.Count;
 

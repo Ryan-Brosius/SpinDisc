@@ -29,9 +29,51 @@ public class TowerPurchaseManager : MonoBehaviour
         if (!CanSpawnTower)
             return;
 
-        // Pushes it slightly forward
-        GameObject newTower = Instantiate(tower, spawnPlatform.transform.position + new Vector3(0f, 0f, 0.1f), Quaternion.identity).gameObject;
+        Vector3 spawnOffset = GetBestSpawnOffset(spawnPlatform.circumferenceRadius) * 0.1f;
+        Vector3 spawnPos = spawnPlatform.transform.position + spawnOffset;
+
+        GameObject newTower = Instantiate(tower, spawnPos, Quaternion.identity).gameObject;
         GameManager.Instance.AddTowerToList(newTower);
+    }
+
+    private Vector3 GetBestSpawnOffset(float placementRadius)
+    {
+        (Vector3 offset, float angleDeg)[] cardinals = new[]
+        {
+            (new Vector3( 0, 0,  1) * placementRadius,  90f),
+            (new Vector3(-1, 0,  0) * placementRadius, 180f),
+            (new Vector3( 0, 0, -1) * placementRadius, 270f),
+            (new Vector3( 1, 0,  0) * placementRadius,   0f),
+        };
+
+        Vector3 platformPos = spawnPlatform.transform.position;
+        int bestCount = int.MaxValue;
+        Vector3 bestOffset = cardinals[0].offset;   
+
+        foreach (var (offset, arcCenter) in cardinals)
+        {
+            int crowding = 0;
+            foreach (var rider in spawnPlatform._inside)
+            {
+                Vector3 toRider = rider.transform.position - platformPos;
+                float angle = Mathf.Atan2(toRider.z, toRider.x) * Mathf.Rad2Deg;
+                if (angle < 0) angle += 360f;
+                float delta = Mathf.DeltaAngle(angle, arcCenter);
+                if (Mathf.Abs(delta) <= 45f)
+                    crowding++;
+            }
+
+            if (crowding == 0)
+                return offset;
+
+            if (crowding < bestCount)
+            {
+                bestCount = crowding;
+                bestOffset = offset;
+            }
+        }
+
+        return bestOffset;
     }
 
     #region Spawn Tower API Calls
